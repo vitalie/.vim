@@ -1,0 +1,24 @@
+{
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "?",
+  "solargraph.formatting": true,
+  "solargraph.diagnostics": true,
+  "elixir.pathToElixirLS": "/opt/homebrew/bin/elixir-ls",
+  "Lua.format.defaultConfig":{
+    "indent_style":"space",
+    "indent_size":"2"
+  },
+  "Lua.workspace.checkThirdParty": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "lua",
+    "ruby",
+    "elixir",
+    "typescript",
+    "javscript",
+    "scss",
+    "css",
+    "json",
+    "go"
+  ]
+}
