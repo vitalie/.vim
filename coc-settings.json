@@ -1,0 +1,56 @@
+{
+  "suggest.noselect": false,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "?",
+  "diagnostic.checkCurrentLine": true,
+  "[ruby]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "solargraph.formatting": true,
+  "solargraph.diagnostics": true,
+  "solargraph.checkGemVersion": false,
+  "[elixir]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "elixir.pathToElixirLS": "/opt/homebrew/bin/elixir-ls",
+  "[go]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "go.goplsOptions": {
+    "staticcheck": true
+  },
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": [
+        "go.mod"
+      ],
+      "filetypes": [
+        "go"
+      ]
+    }
+  },
+  "[lua]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "Lua.workspace.checkThirdParty": false,
+  "Lua.format.defaultConfig": {
+    "indent_style": "space",
+    "indent_size": "2"
+  },
+  "sql.database": "postgresql",
+  "sql.formatOptions": {
+    "language": "postgresql",
+    "dialect": "postgresql",
+    "keywordCase": "upper",
+    "functionCase": "upper",
+    "dataTypeCase": "lower"
+  },
+  "[javascript][typescript][css][scss]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[json][yaml]": {
+    "coc.preferences.formatOnSave": true
+  }
+}
