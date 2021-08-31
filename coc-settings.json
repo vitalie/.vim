@@ -1,0 +1,45 @@
+{
+  "suggest.noselect": false,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "?",
+  "diagnostic.checkCurrentLine": true,
+  // Ruby
+  "solargraph.formatting": true,
+  "solargraph.diagnostics": true,
+  "solargraph.checkGemVersion": false,
+  "[ruby]": {
+      "coc.preferences.formatOnSave": true,
+  },
+  // Elixir
+  "elixir.pathToElixirLS": "/opt/homebrew/bin/elixir-ls",
+  // Go
+  "[go]": {
+      "coc.preferences.formatOnSave": true
+  },
+  "go.goplsOptions": {
+    "staticcheck": true
+  },
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
+    }
+  },
+  // Lua
+  "Lua.workspace.checkThirdParty": false,
+  "Lua.format.defaultConfig":{
+    "indent_style":"space",
+    "indent_size":"2"
+  },
+  "[ruby][elixir][go][lua]": {
+      "coc.preferences.formatOnSave": true
+  },
+  "[javascript][typescript][css][scss]": {
+      "coc.preferences.formatOnSave": true
+  },
+  "[json][yaml]": {
+      "coc.preferences.formatOnSave": true
+  }
+}
