@@ -268,6 +268,7 @@ let g:coc_global_extensions = [
       \ 'coc-go',
       \ 'coc-lua',
       \ 'coc-clangd',
+      \ 'coc-tsserver',
       \ 'coc-elixir',
       \ 'coc-solargraph',
       \ 'coc-sql',
