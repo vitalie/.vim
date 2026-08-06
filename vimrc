@@ -25,9 +25,9 @@ Plug 'tpope/vim-vinegar'              " Enhances netrw navigation
 Plug 'tpope/vim-sleuth'               " Adjusts 'shiftwidth' and 'expandtab' heuristically
 Plug 'tpope/vim-endwise'              " Adds end, endif, etc automatically
 Plug 'tpope/vim-projectionist'        " Quick navigation through related files
-Plug 'gcmt/wildfire.vim'              " Quick selection the closest text objects
-Plug 'jiangmiao/auto-pairs'           " Insert or delete brackets, parens, quotes in pair
-Plug 'ctrlpvim/ctrlp.vim'             " Fuzzy finder for files
+Plug 'LunarWatcher/auto-pairs'        " Insert or delete brackets, parens, quotes in pair
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder binary
+Plug 'junegunn/fzf.vim'               " Fuzzy finder for files
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespaces
 Plug 'tommcdo/vim-lion'               " Text alignment by some character
 Plug 'mileszs/ack.vim'                " Grep like functionality
@@ -37,12 +37,12 @@ Plug 'itchyny/lightline.vim'          " Configurable statusline
 " =============================================================================
 " Plugins - Languages
 " Plug 'sheerun/vim-polyglot'
-if v:version >= 802
+if has('mac')
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 endif
 
 " Go
-if v:version >= 800
+if has('mac')
 Plug 'fatih/vim-go', {'tag': 'v1.29', 'do': ':GoUpdateBinaries', 'for': 'go'}
 endif
 
@@ -56,7 +56,6 @@ Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 
 " Erlang
 Plug 'vim-erlang/vim-erlang-runtime', { 'for': ['elixir', 'erlang'] }
-Plug 'vim-erlang/vim-erlang-runtime', { 'for': ['elixir', 'erlang'] }
 Plug 'vim-erlang/vim-erlang-compiler', { 'for': ['elixir', 'erlang'] }
 Plug 'vim-erlang/vim-erlang-tags', { 'for': ['elixir', 'erlang'] }
 
@@ -69,7 +68,7 @@ Plug 'andyl/vim-projectionist-elixir', { 'for': ['elixir'] }
 Plug 'vim-test/vim-test', { 'for': ['ruby', 'elixir', 'erlang', 'go', 'javascript', 'lua'] }
 
 " SQL
-Plug 'lifepillar/pgsql.vim'
+Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 
 " =============================================================================
 call plug#end()
@@ -77,9 +76,7 @@ call plug#end()
 " Settings - General
 set nocompatible
 
-set ttyfast
-set ttymouse=xterm2
-set ttyscroll=3
+set ttymouse=sgr
 
 set mouse=a                    " Enable mouse mode
 set noerrorbells               " No beeps
@@ -92,7 +89,7 @@ set autowrite                  " Automatically save before :next, :make etc.
 set autoindent                 " Autoindent when starting new line, or using o or O
 set backspace=indent,eol,start " Allow backspace in insert mode
 set hidden                     " https://medium.com/usevim/vim-101-set-hidden-f78800142855
-set fileformats=unix,dos,mac   " Prefer Unix over Windows over OS 9 formats
+set fileformats=unix,dos       " Prefer Unix over Windows formats
 
 set incsearch                  " Shows the match while typing
 set hlsearch                   " Highlight found searches
@@ -109,16 +106,12 @@ set noshowmode                 " We show the mode with airline or lightline
 
 set completeopt=menu,menuone
 set pumheight=10               " Completion window max size
-set nocursorcolumn             " Speed up syntax highlighting
-set nocursorline
 set updatetime=300
 set conceallevel=2             " Concealed text is completely hidden
 set nofoldenable
 
-if v:version > 800
-  set shortmess+=c   " Shut off completion messages
-  set belloff+=ctrlg " If Vim beeps during completion
-endif
+set shortmess+=c   " Shut off completion messages
+set belloff+=ctrlg " If Vim beeps during completion
 
 "http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
 set clipboard^=unnamed
@@ -203,7 +196,7 @@ if has("gui_running")
 endif
 
 " Configure colorscheme
-if $TERM == 'screen'
+if $TERM =~ 'screen' || $TERM =~ 'tmux'
   set t_Co=256
 endif
 set background=dark
@@ -232,7 +225,7 @@ let mapleader=" "
 nnoremap <leader>q :q!<CR>
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>/ :Ack<space>
-nnoremap <leader><leader> :CtrlP<CR>
+nnoremap <leader><leader> :Files<CR>
 nnoremap <leader>aa :A<CR>
 nnoremap <leader>av :AV<CR>
 
@@ -283,6 +276,8 @@ augroup filetypedetect
 augroup END
 
 " Ack
-if executable('ag')
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --no-heading --smart-case'
+elseif executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif

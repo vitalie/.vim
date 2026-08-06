@@ -22,9 +22,10 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 
 
-autocmd BufEnter *.go nmap <leader>t  <Plug>(go-test)
-autocmd BufEnter *.go nmap <leader>tt <Plug>(go-test-func)
-autocmd BufEnter *.go nmap <leader>c  <Plug>(go-coverage-toggle)
+" Testing is handled uniformly by vim-test (<leader>tt/tf/ts/tl/tv), which
+" already covers Go; go-test/go-test-func are intentionally not mapped here
+" to avoid colliding with it.
+autocmd BufEnter *.go nmap <leader>gc  <Plug>(go-coverage-toggle)
 
 " Show the function signature for a given routine
 autocmd BufEnter *.go nmap <leader>i  <Plug>(go-info)
